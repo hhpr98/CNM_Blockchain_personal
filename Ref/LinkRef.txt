@@ -1,0 +1,4 @@
+* Moddle FIT
+* Video slide bài giảng, GV Trần Văn Quý, FIT.HCMUS
+* https://towardsdatascience.com/blockchain-explained-using-c-implementation-fb60f29b9f07
+* http://thaotrinh.info/tao-ung-dung-blockchain-dau-tien-voi-c/
