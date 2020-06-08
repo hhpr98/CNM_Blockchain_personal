@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Text;
 using System.Web;
 
 namespace BlockChainDemo.Models
@@ -68,6 +69,40 @@ namespace BlockChainDemo.Models
         {
             List<Transactions> transactions = new List<Transactions> { new Transactions("", "", 0) };
             return new Block(DateTime.Now, transactions, "0");
+        }
+
+        private static String PrintChain(BlockChain blockChain)
+        {
+            StringBuilder builder = new StringBuilder();
+            builder.Append("----------------- Start Blockchain -----------------\n");
+            builder.Append("\n");
+            foreach (Block block in blockChain.Chain)
+            {
+                builder.Append("\n");
+                builder.Append("------ Start Block ------\n");
+                builder.Append("Hash: ");
+                builder.Append(block.Hash);
+                builder.Append("\n");
+                builder.Append("Previous Hash: ");
+                builder.Append(block.PreviousHash);
+                builder.Append("\n");
+                builder.Append("--- Start Transactions ---\n");
+                foreach (Transactions transaction in block.transactions)
+                {
+                    builder.Append("From: ");
+                    builder.Append(transaction.From);
+                    builder.Append(" To ");
+                    builder.Append(transaction.To);
+                    builder.Append(" Amount ");
+                    builder.Append(transaction.Amount.ToString());
+                    builder.Append("\n");
+                }
+                builder.Append("--- End Transactions ---\n");
+                builder.Append("------ End Block ------\n");
+            }
+            builder.Append("----------------- End Blockchain -----------------\n");
+            String res = builder.ToString();
+            return res;
         }
     }
 }

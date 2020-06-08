@@ -21,18 +21,20 @@ namespace testConsole
             Console.WriteLine("--------- Start mining ---------");
             blockChain.MineBlock(minerAddress);
             Console.WriteLine("BALANCE of the miner: {0}", blockChain.GetBalance(minerAddress));
-            blockChain.CreateTransaction(new Transactions(user1Address, user2Address, 5));
-            Console.WriteLine();
-            Console.WriteLine("--------- Start mining ---------");
-            blockChain.MineBlock(minerAddress);
-            Console.WriteLine("BALANCE of the miner: {0}", blockChain.GetBalance(minerAddress));
-            Console.WriteLine();
-            PrintChain(blockChain);
-            Console.WriteLine();
-            Console.WriteLine("Hacking the blockchain...");
-            blockChain.Chain[1].transactions = new List<Transactions> { new Transactions(user1Address, minerAddress, 150) };
-            Console.WriteLine("Is valid: {0}", blockChain.IsValidChain());
-            Console.ReadKey();
+            Console.WriteLine("BALANCE of the miner: {0}", blockChain.GetBalance(user1Address));
+            Console.WriteLine("BALANCE of the miner: {0}", blockChain.GetBalance(user2Address));
+            //blockChain.CreateTransaction(new Transactions(user1Address, user2Address, 5));
+            //Console.WriteLine();
+            //Console.WriteLine("--------- Start mining ---------");
+            //blockChain.MineBlock(minerAddress);
+            //Console.WriteLine("BALANCE of the miner: {0}", blockChain.GetBalance(minerAddress));
+            //Console.WriteLine();
+            //PrintChain(blockChain);
+            //Console.WriteLine();
+            //Console.WriteLine("Hacking the blockchain...");
+            //blockChain.Chain[1].transactions = new List<Transactions> { new Transactions(user1Address, minerAddress, 150) };
+            //Console.WriteLine("Is valid: {0}", blockChain.IsValidChain());
+            //Console.ReadKey();
         }
 
         private static void PrintChain(BlockChain blockChain)
