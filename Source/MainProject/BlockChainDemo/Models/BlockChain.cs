@@ -130,5 +130,18 @@ namespace BlockChainDemo.Models
             return ls;
         }
 
+        public List<string> GetChainTransaction(BlockChain blockChain)
+        {
+            List<string> ls = new List<string>();
+            foreach (Block block in blockChain.Chain)
+            {
+                foreach (Transactions transaction in block.transactions)
+                {
+                    ls.Add("[" + transaction.From + "] đã chuyển cho [" + transaction.To + "] số tiền " + transaction.Amount.ToString() + " (VCOIN)");
+                }
+            }
+            return ls;
+        }
+
     }
 }
