@@ -135,9 +135,16 @@ namespace BlockChainDemo.Models
             List<string> ls = new List<string>();
             foreach (Block block in this.Chain)
             {
+                //foreach (Transactions transaction in block.transactions)
+                //{
+                //    ls.Add("[" + transaction.From + "] đã chuyển cho [" + transaction.To + "] số tiền " + transaction.Amount.ToString() + " (VCOIN)");
+                //}
                 foreach (Transactions transaction in block.transactions)
                 {
-                    ls.Add("[" + transaction.From + "] đã chuyển cho [" + transaction.To + "] số tiền " + transaction.Amount.ToString() + " (VCOIN)");
+                    if (transaction.To.Contains("miner"))
+                        ls.Add("[" + transaction.To + "] đã nhận được " + transaction.Amount.ToString() + " (VCOIN)");
+                    else
+                        ls.Add("[" + transaction.From + "] đã chuyển cho [" + transaction.To + "] số tiền " + transaction.Amount.ToString() + " (VCOIN)");
                 }
             }
             return ls;

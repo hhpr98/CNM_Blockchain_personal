@@ -46,7 +46,7 @@ namespace BlockChainDemo.Controllers
 
             ViewBag.AllChainContent = blockChain.GetHomeInfor();
 
-            return View();
+            return View("Index");
         }
 
         public ActionResult CreateWallet()
@@ -54,7 +54,7 @@ namespace BlockChainDemo.Controllers
             ViewBag.status = "";
             ViewBag.Acc = acc;
 
-            return View();
+            return View("CreateWallet");
         }
 
         [HttpPost]
@@ -103,7 +103,7 @@ namespace BlockChainDemo.Controllers
             ViewBag.Acc = acc;
             ViewBag.status = "";
 
-            return View();
+            return View("Transfer");
         }
 
         [HttpPost]
@@ -146,14 +146,14 @@ namespace BlockChainDemo.Controllers
         {
             ViewBag.AllTransaction = blockChain.GetChainTransaction();
 
-            return View();
+            return View("History");
         }
 
         public ActionResult About()
         {
             ViewBag.Message = "Ví điện tử demo";
 
-            return View();
+            return View("About");
         }
 
         public ActionResult Login()
@@ -161,7 +161,7 @@ namespace BlockChainDemo.Controllers
             ViewBag.Acc = acc;
             ViewBag.status = "";
 
-            return View();
+            return View("Login");
         }
 
         // post, check login
