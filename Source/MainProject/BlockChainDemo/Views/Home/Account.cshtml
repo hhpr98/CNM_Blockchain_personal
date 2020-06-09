@@ -3,5 +3,16 @@
 }
 <h2>@ViewBag.Title</h2>
 
-<h3>Xin chào : <b style="color:red;">@ViewBag.Acc</b></h3>
-<h4><b>Tài khoản : @ViewBag.Money (VCOIN)</b></h4>
+@if (ViewBag.Acc == "")
+{
+    <p style="color:red;">Bạn chưa đăng nhập!</p>
+    using (@Html.BeginForm("Login", "Home"))
+    {
+        <button type="submit" class="btn btn-primary">Đăng nhập</button>
+    }
+}
+else
+{
+    <h3>Xin chào : <b style="color:red;">@ViewBag.Acc</b></h3>
+    <h4><b>Tài khoản : @ViewBag.Money (VCOIN)</b></h4>
+}

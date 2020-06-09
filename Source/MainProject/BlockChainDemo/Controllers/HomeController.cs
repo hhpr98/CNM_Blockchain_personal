@@ -20,7 +20,7 @@ namespace BlockChainDemo.Controllers
         // không dùng static thì mỗi khi gọi actionResult biến blockChain sẽ bị reset về chain rỗng (1 block gốc)
         private static BlockChain blockChain = new BlockChain(proofOfWorkDifficulty: 2, miningReward: 10);
         private static bool isLoaded = false; // chưa load -> nếu bằng true thì không load lại
-        private static List<string> walletList = new List<string>() { adminAddress, user1Address, user1Address }; // khởi đầu với 3 ví
+        private static List<string> walletList = new List<string>() { adminAddress, user1Address, user2Address }; // khởi đầu với 3 ví
         private static List<string> passwordList = new List<string>() { "admin", "user1", "user2" };
         private static string acc = ""; // tên ví, rỗng là chưa đăng nhập
 
