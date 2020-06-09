@@ -100,8 +100,47 @@ namespace BlockChainDemo.Controllers
 
         public ActionResult Transfer()
         {
+            ViewBag.Acc = acc;
+            ViewBag.status = "";
+
             return View();
         }
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public ActionResult TransferClick(WalletTransactions walltrans)
+        {
+            if (!walletList.Contains(walltrans.walletname))
+            {
+                ViewBag.Acc = acc;
+                ViewBag.status = "Ví đích không tồn tại!";
+
+                return View();
+            }
+            else
+            {
+                var mon = int.Parse(walltrans.money);
+                var balance = blockChain.GetBalance(acc);
+
+                if (balance<=mon)
+                {
+                    ViewBag.Acc = acc;
+                    ViewBag.status = "Số tiền chuyển không thể vượt quá số tiền trong ví" + " (" + balance.ToString() + " VCOIN) !" ;
+
+                    return View();
+                }    
+                else
+                {
+                    blockChain.CreateTransaction(new Transactions(acc, walltrans.walletname, mon));
+                    blockChain.MineBlock(minerAddress);
+
+                    ViewBag.AllChainContent = blockChain.GetHomeInfor();
+
+                    return View("Index");
+                }    
+            }
+        }
+
 
         public ActionResult History()
         {

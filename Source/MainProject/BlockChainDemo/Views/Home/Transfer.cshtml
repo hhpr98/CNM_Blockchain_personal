@@ -1,6 +1,34 @@
-﻿@{
+﻿@model BlockChainDemo.Models.WalletTransactions
+
+@{
     ViewBag.Title = "Giao dịch";
 }
-<h2>@ViewBag.Title.</h2>
+<h2>@ViewBag.Title</h2>
 
-<p>Use this area to provide additional information.</p>
+@if (ViewBag.Acc == "")
+{
+    <p style="color:red;">Bạn chưa đăng nhập!</p>
+    using (@Html.BeginForm("Login", "Home"))
+    {
+        <button type="submit" class="btn btn-primary">Đăng nhập</button>
+    }
+}
+else
+{
+    using (@Html.BeginForm("TransferClick", "Home", FormMethod.Post))
+    {
+        @Html.AntiForgeryToken()
+
+        <h5 style="color:red;">@ViewBag.status</h5>
+        <div class="form-group">
+            <label>Tên ví đích</label>
+            @Html.TextBoxFor(s => s.walletname, "", new { @type = "text", @class = "form-control", @placeholder = "Tên ví đích" })
+        </div>
+        <div class="form-group">
+            <label>Số tiền</label>
+            @Html.TextBoxFor(s => s.money, "", new { @type = "number", @class = "form-control", @placeholder = "Nhập số tiền" })
+        </div>
+       
+        <button type="submit" class="btn btn-primary">Gửi</button>
+    }
+}
