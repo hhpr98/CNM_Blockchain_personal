@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Linq;
 using System.Text;
 using System.Web;
@@ -71,13 +72,15 @@ namespace BlockChainDemo.Models
             return new Block(DateTime.Now, transactions, "0");
         }
 
-        private static String PrintChain(BlockChain blockChain)
+        // get all infor but string too long!!!
+        public string PrintChain(BlockChain blockChain)
         {
             StringBuilder builder = new StringBuilder();
-            builder.Append("----------------- Start Blockchain -----------------\n");
+            builder.Append("----------------- Start Blockchain -----------------\r\n");
             builder.Append("\n");
             foreach (Block block in blockChain.Chain)
             {
+                Console.WriteLine("** 1 block exist **");
                 builder.Append("\n");
                 builder.Append("------ Start Block ------\n");
                 builder.Append("Hash: ");
@@ -104,5 +107,28 @@ namespace BlockChainDemo.Models
             String res = builder.ToString();
             return res;
         }
+
+        public List<string> GetChainInfor(BlockChain blockChain)
+        {
+            List<string> ls = new List<string>();
+            ls.Add("----------------- Start Blockchain -----------------");
+            foreach (Block block in blockChain.Chain)
+            {
+                ls.Add("\n");
+                ls.Add("------ Start Block ------");
+                ls.Add("Hash: " + block.Hash);
+                ls.Add("Previous Hash: " + block.PreviousHash);
+                ls.Add("--- Start Transactions ---");
+                foreach (Transactions transaction in block.transactions)
+                {
+                    ls.Add("From: " + transaction.From + " To " + transaction.To + " Amount " + transaction.Amount.ToString());
+                }
+                ls.Add("--- End Transactions ---");
+                ls.Add("------ End Block ------");
+            }
+            ls.Add("----------------- End Blockchain -----------------\n");
+            return ls;
+        }
+
     }
 }
