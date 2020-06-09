@@ -82,7 +82,20 @@ namespace BlockChainDemo.Controllers
 
         public ActionResult Account()
         {
-            return View();
+            if (acc == "")
+            {
+                ViewBag.Acc = acc;
+                ViewBag.Money = 0;
+
+                return View("Account");
+            }   
+            else
+            {
+                ViewBag.Acc = acc;
+                ViewBag.Money = blockChain.GetBalance(acc);
+
+                return View("Account");
+            }    
         }
 
         public ActionResult Transfer()
