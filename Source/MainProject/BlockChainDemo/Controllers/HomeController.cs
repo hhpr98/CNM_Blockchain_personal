@@ -19,6 +19,9 @@ namespace BlockChainDemo.Controllers
         // không dùng static thì mỗi khi gọi actionResult biến blockChain sẽ bị reset về chain rỗng (1 block gốc)
         private static BlockChain blockChain = new BlockChain(proofOfWorkDifficulty: 2, miningReward: 10);
         private static bool isLoaded = false; // chưa load -> nếu bằng true thì không load lại
+        private static List<string> walletList = new List<string>() { adminAddress, user1Address, user1Address }; // khởi đầu với 3 ví
+        private static List<string> passwordList = new List<string>() { "admin", "user1", "user2" };
+        private static string acc = ""; // tên ví, rỗng là chưa đăng nhập
 
         // Load , lúc đầu block chỉ có 1 khối, thêm 1 khối giao dịch (cho user1 và user2)
         public void Load()
@@ -37,7 +40,7 @@ namespace BlockChainDemo.Controllers
                 isLoaded = true;
             }
 
-            ViewBag.ChainContent = blockChain.GetChainTransaction(blockChain);
+            ViewBag.ChainContent = blockChain.GetChainTransaction();
 
             return View();
         }
@@ -59,7 +62,7 @@ namespace BlockChainDemo.Controllers
 
         public ActionResult History()
         {
-            ViewBag.AllTransaction = blockChain.GetChainTransaction(blockChain);
+            ViewBag.AllTransaction = blockChain.GetChainTransaction();
 
             return View();
         }
@@ -68,6 +71,11 @@ namespace BlockChainDemo.Controllers
         {
             ViewBag.Message = "Ví điện tử demo";
 
+            return View();
+        }
+
+        public ActionResult Login()
+        {
             return View();
         }
     }

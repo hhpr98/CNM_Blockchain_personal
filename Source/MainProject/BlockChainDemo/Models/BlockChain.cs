@@ -73,12 +73,12 @@ namespace BlockChainDemo.Models
         }
 
         // get all infor but string too long!!!
-        public string PrintChain(BlockChain blockChain)
+        public string PrintChain()
         {
             StringBuilder builder = new StringBuilder();
             builder.Append("----------------- Start Blockchain -----------------\r\n");
             builder.Append("\n");
-            foreach (Block block in blockChain.Chain)
+            foreach (Block block in this.Chain)
             {
                 Console.WriteLine("** 1 block exist **");
                 builder.Append("\n");
@@ -108,11 +108,11 @@ namespace BlockChainDemo.Models
             return res;
         }
 
-        public List<string> GetChainInfor(BlockChain blockChain)
+        public List<string> GetChainInfor()
         {
             List<string> ls = new List<string>();
             ls.Add("----------------- Start Blockchain -----------------");
-            foreach (Block block in blockChain.Chain)
+            foreach (Block block in this.Chain)
             {
                 ls.Add("\n");
                 ls.Add("------ Start Block ------");
@@ -130,10 +130,10 @@ namespace BlockChainDemo.Models
             return ls;
         }
 
-        public List<string> GetChainTransaction(BlockChain blockChain)
+        public List<string> GetChainTransaction()
         {
             List<string> ls = new List<string>();
-            foreach (Block block in blockChain.Chain)
+            foreach (Block block in this.Chain)
             {
                 foreach (Transactions transaction in block.transactions)
                 {
