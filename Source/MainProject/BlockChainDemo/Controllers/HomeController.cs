@@ -115,7 +115,7 @@ namespace BlockChainDemo.Controllers
                 ViewBag.Acc = acc;
                 ViewBag.status = "Ví đích không tồn tại!";
 
-                return View();
+                return View("Transfer");
             }
             else
             {
@@ -127,7 +127,7 @@ namespace BlockChainDemo.Controllers
                     ViewBag.Acc = acc;
                     ViewBag.status = "Số tiền chuyển không thể vượt quá số tiền trong ví" + " (" + balance.ToString() + " VCOIN) !" ;
 
-                    return View();
+                    return View("Transfer");
                 }    
                 else
                 {
