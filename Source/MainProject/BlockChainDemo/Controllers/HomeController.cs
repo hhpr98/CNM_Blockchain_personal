@@ -51,7 +51,33 @@ namespace BlockChainDemo.Controllers
 
         public ActionResult CreateWallet()
         {
+            ViewBag.status = "";
+            ViewBag.Acc = acc;
+
             return View();
+        }
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public ActionResult CheckCreateWallet(User _user)
+        {
+            if (walletList.Contains(_user.username))
+            {
+                ViewBag.status = "Tên đăng nhập đã tồn tại!";
+                ViewBag.Acc = acc;
+
+                return View("CreateWallet");
+            }
+            else
+            {
+                walletList.Add(_user.username);
+                passwordList.Add(_user.password);
+                acc = _user.username;
+
+                ViewBag.AllChainContent = blockChain.GetHomeInfor();
+
+                return View("Index");
+            }
         }
 
         public ActionResult Account()

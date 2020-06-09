@@ -1,6 +1,36 @@
-﻿@{
+﻿@model BlockChainDemo.Models.User
+
+@{
     ViewBag.Title = "Tạo ví";
 }
-<h2>@ViewBag.Title.</h2>
+<h2>@ViewBag.Title</h2>
 
-<p>Use this area to provide additional information.</p>
+@if (ViewBag.Acc != "")
+{
+    <p style="color:red;">Bạn đã đăng nhập! Vui lòng đăng xuất nếu muốn tạo ví mới</p>
+    using (@Html.BeginForm("Logout", "Home", FormMethod.Post))
+    {
+        @Html.AntiForgeryToken()
+        <button type="submit" class="btn btn-primary">Đăng xuất</button>
+    }
+}
+else
+{
+    using (@Html.BeginForm("CheckCreateWallet", "Home", FormMethod.Post))
+    {
+        <!-- Ref : https://hoanguyenit.com/aspnet-mvc5-login-and-register.html -->
+
+        @Html.AntiForgeryToken()
+
+        <h5 style="color:red;">@ViewBag.status</h5>
+        <div class="form-group">
+            <label for="exampleInputEmail1">Tên ví</label>
+            @Html.TextBoxFor(s => s.username, "", new { @type = "text", @class = "form-control", @placeholder = "Tên ví" })
+        </div>
+        <div class="form-group">
+            <label for="exampleInputPassword1">Mật khẩu</label>
+            @Html.TextBoxFor(s => s.password, "", new { @type = "password", @class = "form-control", @placeholder = "Tên đăng nhập" })
+        </div>
+        <button type="submit" class="btn btn-primary">Tạo ví</button>
+    }
+}
