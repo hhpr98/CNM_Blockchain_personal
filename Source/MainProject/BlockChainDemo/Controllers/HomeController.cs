@@ -30,6 +30,9 @@ namespace BlockChainDemo.Controllers
             blockChain.CreateTransaction(new Transactions(adminAddress, user1Address, 200));
             blockChain.CreateTransaction(new Transactions(adminAddress, user2Address, 200));
             blockChain.MineBlock(minerAddress);
+            blockChain.CreateTransaction(new Transactions(adminAddress, user1Address, 20));
+            blockChain.CreateTransaction(new Transactions(adminAddress, user2Address, 130));
+            blockChain.MineBlock(minerAddress);
         }
 
         public ActionResult Index()
@@ -41,7 +44,7 @@ namespace BlockChainDemo.Controllers
                 isLoaded = true;
             }
 
-            ViewBag.ChainContent = blockChain.GetChainTransaction();
+            ViewBag.AllChainContent = blockChain.GetHomeInfor();
 
             return View();
         }

@@ -143,5 +143,28 @@ namespace BlockChainDemo.Models
             return ls;
         }
 
+        public List<List<string>> GetHomeInfor()
+        {
+            List<List<string>> lsAll = new List<List<string>>();
+            int i = 0;
+
+            foreach (Block block in this.Chain)
+            {
+                List<string> lsTemp = new List<string>();
+                lsTemp.Add("Block #" + i.ToString());
+                lsTemp.Add("Hash: " + block.Hash);
+                lsTemp.Add("Previous Hash: " + block.PreviousHash);
+                lsTemp.Add("Transaction:");
+                foreach (Transactions transaction in block.transactions)
+                {
+                    lsTemp.Add("From: " + transaction.From + " To " + transaction.To + " Amount " + transaction.Amount.ToString());
+                }
+                i++;
+                lsAll.Add(lsTemp);
+            }
+
+            return lsAll;
+        }
+
     }
 }
