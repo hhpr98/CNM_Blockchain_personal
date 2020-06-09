@@ -8,7 +8,7 @@ Bài tập cá nhân blockchain các công nghệ mới trong phát triển ph�
 
 ------------------------------------
 
-# Demo : 
+# Demo : https://youtu.be/SD_IhdSjaIs
 
 # Hướng dẫn sử dụng : https://github.com/hhpr98/CNM_Blockchain_personal/tree/master/Doc
 
