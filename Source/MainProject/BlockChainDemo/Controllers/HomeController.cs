@@ -1,4 +1,5 @@
 ﻿using BlockChainDemo.Models;
+using Microsoft.Ajax.Utilities;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -76,7 +77,25 @@ namespace BlockChainDemo.Controllers
 
         public ActionResult Login()
         {
+            ViewBag.Acc = acc;
+            ViewBag.status = "";
+
             return View();
+        }
+
+        // post, check login
+        public ActionResult CheckLogin(string username,string password)
+        {
+            if (walletList.Contains(username))
+            {
+                ViewBag.AllTransaction = blockChain.GetChainTransaction();
+
+                return View("History");
+            }
+            else
+            {
+                return View("Account");
+            }    
         }
     }
 }
