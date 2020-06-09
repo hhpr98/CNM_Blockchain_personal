@@ -87,17 +87,36 @@ namespace BlockChainDemo.Controllers
         }
 
         // post, check login
-        public ActionResult CheckLogin(string username,string password)
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public ActionResult CheckLogin(User _user)
         {
-            if (walletList.Contains(username))
+            if (walletList.Contains(_user.username))
             {
-                ViewBag.AllTransaction = blockChain.GetChainTransaction();
+                var idx = walletList.IndexOf(_user.username);
+                var pass = passwordList[idx];
 
-                return View("History");
+                if (_user.password == pass)
+                {
+                    acc = _user.username;
+
+                    ViewBag.AllChainContent = blockChain.GetHomeInfor();
+
+                    return View("Index");
+                }   
+                else
+                {
+                    ViewBag.Acc = acc;
+                    ViewBag.status = "Sai mật khẩu";
+                    return View("Login");
+                }    
             }
             else
             {
-                return View("Account");
+                ViewBag.Acc = acc;
+                ViewBag.status = "Sai tên đăng nhập";
+
+                return View("Login");
             }    
         }
     }

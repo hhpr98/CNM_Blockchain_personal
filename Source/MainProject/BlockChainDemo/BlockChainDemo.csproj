@@ -127,6 +127,7 @@
     <Compile Include="Models\Block.cs" />
     <Compile Include="Models\BlockChain.cs" />
     <Compile Include="Models\Transactions.cs" />
+    <Compile Include="Models\User.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
